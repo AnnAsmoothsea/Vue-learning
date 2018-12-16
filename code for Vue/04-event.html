@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .content{
+            width: 400px; 
+            height: 300px; 
+            background-color: cornflowerblue;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .test1{
+            width: 600px;
+            height: 500p;
+            background-color:aliceblue;
+            margin: 20px auto;
+        }
+    
+    </style>
+
+
+</head>
+<body>
+    <div id="main">
+        <!-- <div class="content" @click="con">
+            <input type="button" value="点击" @click.stop="btn">
+        </div> -->
+        <div class="test1" @click="test">
+            <div class="content" @click="con">
+                <input type="button" value="点击" @click.stop="btn">
+            </div>
+        </div>
+
+        <hr/>
+        <a @click.prevent.once="link" href="www.mm2018.com">前往素材网站</a>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#main',
+            data:{
+
+            },
+            methods:{
+
+                btn:function(){
+                    console.log('点击了按钮')
+                },
+                con:function(){
+                    console.log('点击了div')
+                },
+
+                test:function(){
+                    console.log('点击了最外侧div')
+                },
+                link:function(){
+                    alert('点击了A标签，但事件被阻止了')
+                }
+
+
+            },
+        })
+    
+    </script>    
+</body>
+</html>

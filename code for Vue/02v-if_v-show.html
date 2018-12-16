@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if v-show</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .content{
+            width: 300px;
+            height: 300px;
+            background-color: rgb(197, 165, 165);
+            margin: 100px auto;
+        }
+
+    </style>
+
+</head>
+<body>
+    <div id="main">
+        <input type="button" value="显示&隐藏" @click="btn">
+        <div class="content" v-if="seen"></div>  <!-- 通过直接注释代码使其失效来控制 -->
+        <div class="content" v-show="seen"></div>  <!-- 通过改变display来控制 -->
+        <!-- <div class="content" v-if="true"></div> -->
+    </div>
+
+
+<script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#main',
+            data:{
+                seen:true
+            },
+            methods:{
+                btn : function () { 
+                    this.seen = !this.seen
+                 }
+            },
+        })
+
+
+    </script>
+</body>
+</html>

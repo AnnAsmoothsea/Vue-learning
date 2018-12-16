@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03v-for</title>
+
+    <style>
+    [v-cloak]{
+        display: none;
+    }
+    </style>
+
+
+</head>
+<body>
+    <div id="main">
+       <div class="news">
+           <ul>
+               <li v-cloak v-for="newss in newsList">{{newss}}</li>
+           </ul>
+       </div>
+    </div>
+
+
+    <script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#main',
+            data:{
+                newsList:['标题1','标题2','标题3','标题4','标题5']
+            },
+            methods:{
+              
+            },
+        })
+
+
+    </script>
+</body>
+</html>

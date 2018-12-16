@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>学生列表案例</title>
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #main{
+            width:1000px;
+            height: auto;
+            margin: 40px auto;
+            overflow: hidden;
+            border: 1px solid #dedede;
+            /* 去掉重复的底边边框 */
+            border-bottom:none;
+        }
+
+        #main table{
+            width: 100%;
+        }
+
+        #main table tr{ 
+            line-height: 45px;
+        }
+
+        #main table tr td{
+            border-bottom: 1px solid  #dedede;
+            font-size: 14px;
+            /* 首行缩进 */
+            text-indent: 20px;
+        }
+
+        #main table tr td a{
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .t1{
+            width: 100px;
+            border: none;
+        }
+
+        .t2{
+            width: 40px;
+            border: none;
+            cursor: pointer;
+        }
+
+</style>
+    
+
+</head>
+<body>
+
+    <div id="main">
+        <table >
+            <tr>
+                <td>学号</td>
+                <td>姓名</td>
+                <td>新增时间</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for="stu in list" :key="stu.id">
+                <td>{{stu.id}}</td>
+                <td>{{stu.name}}</td>
+                <td>{{stu.date}}</td>
+                <td><a href="#">删除</a></td>
+            </tr>
+
+            <tr>
+                <td><input type="text" placeholder="请输入学号" class="t1"></td>
+                <td><input type="text" placeholder="请输入姓名" class="t1"></td>
+                <td><input type="text" placeholder="搜索学生姓名" class="t1"></td>
+                <td><input type="button" value="新增" class="t2"></td>
+            </tr>
+        </table>
+    </div>
+
+
+<script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#main',
+            data:{
+               list:[
+                   {id:1,name:'小明',date:'2018-12-16'},
+                   {id:2,name:'小李',date:'2018-12-16'},
+                   {id:3,name:'小张',date:'2018-12-16'},
+                   {id:4,name:'小李',date:'2018-12-16'},
+               ]
+            },
+            methods:{
+               
+            },
+        })
+
+    </script>
+</body>
+</html>

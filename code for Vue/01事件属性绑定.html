@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<link rel="stylesheet" href="CSS/main.css">
+	<style>
+		[v-cloak]{
+			display: none;
+		}
+	</style>
+</head>
+
+	<div id="main">
+		<!-- 显示差值表达式 -->
+		<!-- <h1 v-cloak>{{bindmsg}}</h1> -->
+		<h2 v-text>{{msg2}}</h2>
+		<div v-html = "msg3"></div>
+		<!-- 事件与属性绑定 -->
+		<h1 v-bind:title="title">{{bindmsg}}</h1>
+		<input type="button" value="点击" @click="f1"> 
+
+	</div>
+
+<body>
+
+	<script src="JS/vue.js"></script>
+
+	<script>
+	var vm = new Vue({
+		el: '#main',
+		data:{
+			// msg1:'my fist Vue program',
+			msg2:'my second Vue word',
+			msg3:'<h3>my second Vue word</h3>',
+			bindmsg:'hello KFC',
+			title:'这是h1的title',
+		},
+		methods:{
+			f1:function(){
+				alert(this.bindmsg)
+			}
+		},
+	})
+	</script>	
+	
+</body>
+</html>
