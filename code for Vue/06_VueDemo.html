@@ -57,6 +57,8 @@
 
 </head>
 <body>
+<!-- 1.使用v-for/findIndex()实现对象的显示 
+     2.使用v-model实现新增功能 即双向数据绑定-->
 
     <div id="main">
         <table >
@@ -66,18 +68,19 @@
                 <td>新增时间</td>
                 <td>操作</td>
             </tr>
-            <tr v-for="stu in list" :key="stu.id">
+            <tr v-for="stu in search(searchText)" :key="stu.id">
                 <td>{{stu.id}}</td>
                 <td>{{stu.name}}</td>
                 <td>{{stu.date}}</td>
-                <td><a href="#">删除</a></td>
+                <!-- 绑定删除方法且阻止默认事件 -->
+                <td><a href="" @click.prevent="del(stu.id)">删除</a></td>
             </tr>
 
             <tr>
-                <td><input type="text" placeholder="请输入学号" class="t1"></td>
-                <td><input type="text" placeholder="请输入姓名" class="t1"></td>
-                <td><input type="text" placeholder="搜索学生姓名" class="t1"></td>
-                <td><input type="button" value="新增" class="t2"></td>
+                <td><input type="text" placeholder="请输入学号" class="t1" v-model="id"></td>
+                <td><input type="text" placeholder="请输入姓名" class="t1" v-model="name"></td>
+                <td><input type="text" placeholder="搜索学生姓名" class="t1" v-model="searchText"></td>
+                <td><input type="button" value="新增" class="t2" @click="addbtn"></td>
             </tr>
         </table>
     </div>
@@ -88,6 +91,13 @@
         var vm = new Vue({
             el:'#main',
             data:{
+
+                id:'',
+
+                name:'',
+
+                searchText:'',
+
                list:[
                    {id:1,name:'小明',date:'2018-12-16'},
                    {id:2,name:'小李',date:'2018-12-16'},
@@ -96,7 +106,39 @@
                ]
             },
             methods:{
-               
+//              获取用户的输入
+//              利用list的push方法添加即可显示
+               addbtn:function(){
+                    var newmsg = {id:this.id,name:this.name,date:new Date().toLocaleString()}
+                    // 获取输入的学号以及姓名,获取当前系统时间
+                    this.list.push(newmsg);
+                    //清空输入区的缓存
+                    this.id = "";
+                    this.name = "";
+                    
+               },
+//              根据学号逐行删除信息
+               del:function(id){
+                    var num = this.list.findIndex(function(stu) {
+                            if(stu.id == id){ return  true}
+                            // 遍历数组并获取到数组的索引
+                            // 并用回调函数标明索引是否正确匹配
+                    })
+                    this.list.splice(num,1);
+               },
+
+               search:function(searchText){
+                // 使用一个新的数组存放搜索到的数据
+                    var newList = [];
+                    this.list.forEach(function(stu) {
+                        // 遍历name那一列
+                        if(stu.name.indexOf(searchText)!==-1){
+                            newList.push(stu)
+                        }
+                    })
+                    return newList
+
+               },
             },
         })
 
