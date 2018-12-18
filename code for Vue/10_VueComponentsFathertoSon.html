@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父组件向子组件传值</title>
+</head>
+<body>
+    <div id="main">
+       <test v-bind:fathermsg="msg1"></test>
+    </div>
+
+    <template id="con"> 
+        <div>
+            <h1>这是一个私有组件---{{msg}}---{{fathermsg}}</h1>
+        </div>
+    </template>
+
+
+    <script src="js/vue.js"></script>
+    <script>
+        var t1 = {
+            template:'#con',
+            props:['fathermsg'],
+            data:function(){
+                return{
+                    msg:'我是子组件中的数据'
+                }
+            }
+        }
+
+        var vm = new Vue({
+            el:'#main',
+            data:{
+                msg1:'我是父组件'
+            },
+            methods:{
+              
+            },
+            components:{
+                test:t1
+            },
+        })
+
+
+    </script>
+</body>
+</html>

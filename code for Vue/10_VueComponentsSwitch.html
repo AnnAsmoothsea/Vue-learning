@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/animate.css">
+    <style>
+        .t1-enter,.t1-leave-to{
+            opacity: 0;
+            transform: translateX(300px);
+        }
+
+        .t1-enter-active,.t1-leave-active{
+            transition: all 1s ease;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="main">
+       <a href="" @click.prevent="name='test1'">组件1</a>
+       <a href="" @click.prevent="name='test2'">组件2</a>
+       <a href="" @click.prevent="name='test3'">组件3</a>
+       <transition name="t1" mode="out-in">
+            <component :is="name"></component>
+       </transition>
+    </div>
+
+
+<script src="js/vue.js"></script>
+    <script>
+        Vue.component('test1',{
+            template:'<h1>这是第一个组件</h1>'
+        })
+
+        Vue.component('test2',{
+            template:'<h1>这是第二个组件</h1>'
+        })
+
+        Vue.component('test3',{
+            template:'<h1>这是第三个组件</h1>'
+        })
+
+        var vm = new Vue({
+            el:'#main',
+            data:{
+                name:'test1'
+            },
+            methods:{
+              
+            },
+        })
+
+
+    </script>
+</body>
+</html>

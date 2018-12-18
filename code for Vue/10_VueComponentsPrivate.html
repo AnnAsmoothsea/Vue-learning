@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="main">
+    </div>
+
+    <div id="app">
+        <test1></test1>
+    </div>
+
+    <template id="con">
+        <div>
+            <h1>私有组件----{{msg}}</h1>
+        </div>
+    </template>
+
+    <script src="js/vue.js"></script>
+    <script>
+
+        var vm = new Vue({
+            el:'#main',
+            data:{
+
+            },
+            methods:{
+
+            },
+            //私有组件 s
+           
+
+        })
+
+        var app = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            methods:{
+
+            },
+            //私有组件
+            components:{
+                //名字
+                test1:{
+                    template:'#con',
+                    data:function () { 
+                        return{
+                            msg:'我是组件test1中的data数据'
+                        }
+                     },
+                     methods:{
+                         
+                     }
+                }
+            }
+
+        })
+
+        
+    </script>
+    
+</body>
+</html>

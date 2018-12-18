@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue生命周期函数</title>
+</head>
+<body>
+    <div id="main">
+       <h1 id="con">
+           {{msg}}
+       </h1>
+
+       <input type="button" value="修改data中的数据" @click="msg='你好'">
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#main',
+
+            data:{
+                msg:'hello world!',
+            },
+
+            methods:{
+                sayHi:function(){
+                    console.log('nihao')
+                }
+            },
+
+            //1.创建期间
+            beforeCreate:function() {
+                //创建期间的第一个生命周期函数，data数据和methods方法没有被初始化
+                // console.log(this.msg)  ---找不到这个“msg”
+                // this.sayHi()   ---找不到这个sayHi()方法
+            },
+
+            created:function() {
+                //创建期间的第二个生命周期函数，data数据和methods方法已被初始化
+                // console.log(this.msg)    ---可以正常访问这个“msg”
+                // this.sayHi()     ---可以正常访问这个sayHi()方法
+            },
+
+            beforeMount:function() {
+                //创建期间的第三个生命周期函数，不能获取内存中的最新数据，只能取得之前的字符串
+                // console.log(document.getElementById("con").innerHTML)   ---只能在控制台输出"{{msg}}"
+            },
+
+            mounted:function() {
+                // 创建期间的第四个生命周期函数，可以获取最新的数据
+                // console.log(document.getElementById("con").innerHTML)  ---可以在控制台输出"hello world！"
+            },
+
+            beforeUpdate:function() {
+                // 运行期间的第一个函数,只有data中的数据是最新的，而页面中的数据是之前的
+                // console.log(document.getElementById("con").innerHTML) 
+                // ---页面中的数据被修改为"你好"可以在控制台输出"hello world！"
+            },
+
+            updated:function() {
+                // 运行期间的第一个函数,data和页面中的数据是最新的
+                // console.log(document.getElementById("con").innerHTML) 
+                // ---页面中的数据被修改为"你好"，在控制台输出"你好"
+            },
+
+        })
+    </script>
+
+    
+</body>
+</html>

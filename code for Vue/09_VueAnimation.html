@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue过渡动画</title>
+    <link rel="stylesheet" href="css/animate.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #main{
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+        }
+
+
+        .con{
+            width: 100px;
+            height: 100px;
+            background-color:rgb(180, 118, 118);
+        }
+        
+    
+    </style>
+
+
+</head>
+<body>
+
+        <div id="main">
+            <input type="button" value="显示/隐藏div"  @click="btn"/>
+            <transition enter-active-class="animated tada"  leave-active-class="animated bounceOutDown">
+                    <div class="con" v-if="flag"></div>
+            </transition>
+        </div>
+
+
+
+    <script src="js/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el:'#main',
+            data:{
+                flag : false,
+            },
+            methods:{
+
+                btn:function(){
+                    this.flag = !this.flag
+                }
+            },
+        }) 
+
+
+    </script>
+    
+</body>
+</html>
